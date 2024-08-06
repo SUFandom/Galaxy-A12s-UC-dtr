@@ -1,0 +1,46 @@
+#!/system/bin/sh
+#!/bin/sh
+## THE /bin/sh CALL IS MEANT FOR DIAGNOSTICS! REMOVE IT ON PROD
+
+msg() {
+    echo "$1"
+}
+
+barrier_1() {
+    msg " "
+    msg "================================"
+}
+
+barrier_2() {
+    msg "================================"
+    msg " "
+}
+
+printico_with_info () {
+    cat /system/twrpinfo/art.txt
+}
+
+printinfo() {
+    barrier_1
+    msg " "
+    printico_with_info
+    msg " "
+    msg "TWRP FOR GALAXY A12s - $(cat /system/twrp_version.note)"
+    barrier_2
+    msg "Bootloader: $(getprop ro.boot.bootloader)"
+    msg "Brand: $(getprop ro.product.manufacturer)"
+    msg "Device: $(getprop ro.product.name)"
+    msg "Model: $(getprop ro.product.model)"
+    msg "Hardware: $(getprop ro.hardware)"
+    msg "Platform: $(getprop ro.board.platform)"
+    msg "CPU API: $(getprop ro.system.product.cpu.abilist)"
+    msg "Dynamic: $(getprop ro.boot.dynamic_partitions)"
+    msg "Android: $(getprop ro.build.version.release) , SDK: $(getprop ro.build.version.sdk)"
+    msg "ID: $(getprop ro.build.id)"
+	msg "Kernel: $(uname -r)"
+    msg""
+    msg "END OF TWRPFETCH"
+    barrier_2
+}
+
+printinfo

@@ -1,0 +1,64 @@
+# Partition Mapper
+
+/product_image  emmc    /dev/block/mapper/product   flags=backup=0;flashimg=1;display="Product EMMC Image"
+/odm_image  emmc    /dev/block/mapper/odm   flags=backup=0;flashimg=1;display="ODM EMMC Image"
+/system_image   emmc    /dev/block/mapper/system    flags=backup=0;flashimg=1;display="System EMMC Image"
+/vendor_image   emmc    /dev/block/mapper/vendor    flags=backup=0;flashimg=1;display="Vendor Image"
+/external_sd    vfat    /dev/block/mmcblk1p1    /dev/block/mmcblk1  flags=storage;wipeingui;removable
+/system     ext4    /dev/block/mapper/system   flags=display="System Logic Partition";backup=1;wipeingui
+/vendor     ext4    /dev/block/mapper/vendor   flags=display="Vendor Logic Partition";wipeingui;backup=1
+/product    ext4    /dev/block/mapper/product  flags=display="Product Logic Partition";backup=1;flashimg=1;wipeingui
+/odm    ext4    /dev/block/mapper/odm  flags=display="ODM LOGIC Partition";wipeingui;backup=1
+
+# Externals
+/usb-otg    auto    /dev/block/sda1 /dev/block/sda  flags=display="USB-OTG";storage;wipeingui;removable
+
+# DO NOT touch
+/boot   emmc    /dev/block/by-name/boot flags=display="Boot, also called Android Kernel"
+/recovery   emmc    /dev/block/by-name/recovery flags=display=recovery
+/metadata   ext4    /dev/block/by-name/metadata flags=display=metadata
+/data   f2fs    /dev/block/by-name/userdata flags=display="Device Data";wipeingui
+/cache  ext4    /dev/block/by-name/cache    flags=display=cache;wipeingui
+/efs    ext4    /dev/block/by-name/sec_efs  flags=display=efs
+/sec_efs    ext4    /dev/block/by-name/sec_efs  flags=display=sec_efs
+/prism  ext4    /dev/block/by-name/prism    flags=display=prism
+/optics ext4    /dev/block/by-name/optics   flags=display=optics
+/init_boot  emmc    /dev/block/by-name/init_boot    flags=display=init_boot
+
+
+# Samsung ODE
+#/dev/block/by-name/keydata		/keydata	ext4	defaults		recoveryonly
+#/dev/block/by-name/keyrefuge		/keyrefuge	f2fs	defaults		recoveryonly
+
+
+# Some references
+
+
+# /system             ext4      system                                flags=display=system;logical
+# /vendor             ext4      vendor                                flags=display=vendor;logical
+# /product            ext4      product                               flags=display=product;logical
+# /odm                ext4      odm                                   flags=display=odm;logical
+# /boot               emmc      /dev/block/by-name/boot               flags=display=boot
+# /recovery           emmc      /dev/block/by-name/recovery           flags=display=recovery
+# /metadata           ext4      /dev/block/by-name/metadata           flags=display=metadata
+# /data               f2fs      /dev/block/by-name/userdata           flags=display=data
+# /cache              ext4      /dev/block/by-name/cache              flags=display=cache
+# /sdcard             sdfat     /dev/block/mmcblk0p1                  flags=display=sdcard
+# /efs                ext4      /dev/block/by-name/sec_efs            flags=display=efs
+# /sec_efs            ext4      /dev/block/by-name/sec_efs            flags=display=sec_efs
+# /carrier            ext4      /dev/block/by-name/carrier            flags=display=carrier
+# /preload            ext4      /dev/block/by-name/hidden             flags=display=preload
+# /modem              emmc      /dev/block/by-name/radio              flags=display=modem
+# /misc               emmc      /dev/block/by-name/misc               flags=display=misc
+# /keydata            ext4      /dev/block/by-name/keydata            flags=display=keydata
+# /keyrefuge          f2fs      /dev/block/by-name/keyrefuge          flags=display=keyrefuge
+# /dtbo               emmc      /dev/block/by-name/dtbo               flags=display=dtbo
+# /prism              ext4      /dev/block/by-name/prism              flags=display=prism
+# /optics             ext4      /dev/block/by-name/optics             flags=display=optics
+# /vbmeta_system      emmc      /dev/block/by-name/vbmeta_system      flags=display=vbmeta_system
+# /vendor_boot        emmc      /dev/block/by-name/vendor_boot        flags=display=vendor_boot
+# /vbmeta_samsung     emmc      /dev/block/by-name/vbmeta_samsung     flags=display=vbmeta_samsung
+# /system_ext         ext4      system_ext                            flags=display=system_ext;logical
+# /vendor_dlkm        ext4      vendor_dlkm                           flags=display=vendor_dlkm;logical
+# /system_dlkm        ext4      system_dlkm                           flags=display=system_dlkm;logical
+# /init_boot          emmc      /dev/block/by-name/init_boot          flags=display=init_boot
