@@ -55,12 +55,12 @@ TARGET_KERNEL_SOURCE := kernel/samsung/a12s
 # Kernel - prebuilt
 TARGET_FORCE_PREBUILT_KERNEL := true
 ifeq ($(TARGET_FORCE_PREBUILT_KERNEL),true)
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/kernel
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/physwizz-kernel
 TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
 BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
-BOARD_INCLUDE_DTB_IN_BOOTIMG := 
+BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
-BOARD_KERNEL_SEPARATED_DTBO := 
+BOARD_KERNEL_SEPARATED_DTBO := true
 endif
 
 # Partitions
@@ -74,7 +74,7 @@ BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR := vendor
 BOARD_SUPER_PARTITION_SIZE := 9126805504 # TODO: Fix hardcoded value
 BOARD_SUPER_PARTITION_GROUPS := samsung_dynamic_partitions
-BOARD_SAMSUNG_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor product odm
+BOARD_SAMSUNG_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor product odm system_ext system_dlkm vendor_dlkm
 BOARD_SAMSUNG_DYNAMIC_PARTITIONS_SIZE := 9122611200 # TODO: Fix hardcoded value
 
 # Platform
@@ -95,6 +95,7 @@ BOARD_AVB_RECOVERY_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
 BOARD_AVB_RECOVERY_ALGORITHM := SHA256_RSA4096
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX := 1
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
+BOARD_BUILD_DISABLED_VBMETAIMAGE := true
 
 # Hack: prevent anti rollback
 PLATFORM_SECURITY_PATCH := 2099-12-31
@@ -119,8 +120,8 @@ TW_HAS_DOWNLOAD_MODE := true
 TARGET_USERIMAGES_USE_F2FS := true
 TW_DEVICE_VERSION := A12s_experimental_@SUFandom-STK
 TW_MTP_DEVICE := "Galaxy A12 TWRP"
-TARGET_SCREEN_WIDTH := 700
-TARGET_SCREEN_HEIGHT := 1500
+TARGET_SCREEN_WIDTH := 720
+TARGET_SCREEN_HEIGHT := 1600
 TW_INCLUDE_NTFS_3G := true
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 TW_INCLUDE_CRYPTO := false
@@ -131,6 +132,8 @@ TW_EXTRA_LANGUAGES := false
 TW_USE_NEW_MINADBD := true
 
 # TheDarkDeath's Recommendation fix 
+
+TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop
 TARGET_RECOVERY_PIXEL_FORMAT := "ABGR_8888"
 TW_MAX_BRIGHTNESS := 300
 TW_DEFAULT_BRIGHTNESS := 155
@@ -159,4 +162,11 @@ TW_BACKUP_EXCLUSIONS += \
 	/data/dalvik=cache \
 	/data/cache \
 	/data/adb \
-	/data/media/0 
+	/data/media/0 \
+	/data/resource-cache \
+	/data/gsi \
+	/data/system/graphicsstats  
+
+## Making the recovery.img smaller
+BOARD_HAS_NO_REAL_SDCARD := true
+RECOVERY_SDCARD_ON_DATA  := true
