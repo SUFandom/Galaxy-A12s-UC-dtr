@@ -32,6 +32,7 @@ DEXPREOPT_GENERATE_APEX_IMAGE := true
 TARGET_BOOTLOADER_BOARD_NAME := exynos850
 TARGET_NO_BOOTLOADER := true
 
+
 # Display
 TARGET_SCREEN_DENSITY := 300
 
@@ -73,7 +74,7 @@ BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR := vendor
 BOARD_SUPER_PARTITION_SIZE := 9126805504 # TODO: Fix hardcoded value
 BOARD_SUPER_PARTITION_GROUPS := samsung_dynamic_partitions
-BOARD_SAMSUNG_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor product odm system_ext vendor_dlkm system_dlkm
+BOARD_SAMSUNG_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor product odm
 BOARD_SAMSUNG_DYNAMIC_PARTITIONS_SIZE := 9122611200 # TODO: Fix hardcoded value
 
 # Platform
@@ -129,5 +130,33 @@ TW_INCLUDE_FUSE_EXFAT := true
 TW_EXTRA_LANGUAGES := false
 TW_USE_NEW_MINADBD := true
 
-# TheDarkDeath's Recommendation fix Color
+# TheDarkDeath's Recommendation fix 
 TARGET_RECOVERY_PIXEL_FORMAT := "ABGR_8888"
+TW_MAX_BRIGHTNESS := 300
+TW_DEFAULT_BRIGHTNESS := 155
+BOARD_SUPRESS_SECURE_ERASE := true
+BOARD_ROOT_EXTRA_FOLDERS += \
+	cache \
+	carrier \
+	data_mirror \
+	efs \
+	keyrefuge \
+	linkerconfig \
+	metadata \
+	omr \
+	optics \
+	bin \
+	sys \
+	prism
+TW_INCLUDE_REPACKTOOLS := true
+TW_INCLUDE_RESETPROP := true
+TWRP_INCLUDE_LOGCAT := true
+TARGET_USES_LOGD := true
+
+TW_BACKUP_EXCLUSIONS += \
+	/data/fonts \
+	/data/system/package_cache \
+	/data/dalvik=cache \
+	/data/cache \
+	/data/adb \
+	/data/media/0 
