@@ -9,6 +9,7 @@
 /vendor     ext4    /dev/block/mapper/vendor   flags=display="Vendor Logic Partition";wipeingui;backup=1
 /product    ext4    /dev/block/mapper/product  flags=display="Product Logic Partition";backup=1;flashimg=1;wipeingui
 /odm    ext4    /dev/block/mapper/odm  flags=display="ODM LOGIC Partition";wipeingui;backup=1
+/cache  ext4    /dev/block/mapper/cache  flags=display="Cache Logic Partition";wipeingui
 
 # Externals
 /usb-otg    auto    /dev/block/sda1 /dev/block/sda  flags=display="USB-OTG";storage;wipeingui;removable
