@@ -219,7 +219,7 @@ patch_libbluetooth() {
 echo " "
 print_full_bar
 print_justified "Multi-disabler v4.0 for Samsung devices"
-print_justified "running Android 9 or later."
+print_justified "running Android 11 or later."
 print_justified "by TheDarkDeath788"
 print_full_bar
 echo " "

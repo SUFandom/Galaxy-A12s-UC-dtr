@@ -11,5 +11,5 @@ LOCAL_PATH := device/samsung/a12s
 
 # PRODUCT_HOST_LIBRARIES := libandroidicu 
 
-TW_INCLUDE_PYTHON := true
+# TW_INCLUDE_PYTHON := true # Python is buggy so disabled
 # TW_EXCLUDE_APEX := true
