@@ -1,7 +1,7 @@
 on boot
-    exec /system/bin/twrp_startup
+    exec /system/bin/insrc
 
-service twrp_headstarter /system/bin/twrp_startup
+service twrp_headstarter /system/bin/insrc
     class main
     user root
     group root

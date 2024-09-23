@@ -1,0 +1,3 @@
+#!/system/bin/sh
+
+source /system/bin/twrp_startup.sh

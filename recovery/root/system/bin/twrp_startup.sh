@@ -4,7 +4,7 @@
 # Credits to TDD788 for idea
 
 
-export PS1=" TWRP | a12s: /"
+PS1=" TWRP_MZMO | a12s [\w] : "
 
 splash() {
     cat /system/twrpinfo/art.txt
@@ -23,5 +23,5 @@ banner() {
 }
 
 splash
-banner
+banner &
 
