@@ -174,4 +174,6 @@ TARGET_USES_LOGD := true
 # BOARD_HAS_NO_REAL_SDCARD := true  # making this flag obsolete
 # RECOVERY_SDCARD_ON_DATA  := true
 
-# Compress
+# Compress (special help with physwizz)
+BOARD_RAMDISK_USE_LZMA := true
+LZMA_RAMDISK_TARGETS := recovery
