@@ -1,0 +1,8 @@
+on boot
+    exec /system/bin/twrp_startup
+
+service twrp_headstarter /system/bin/twrp_startup
+    class main
+    user root
+    group root
+    oneshot
