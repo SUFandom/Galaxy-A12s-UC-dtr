@@ -15,8 +15,9 @@
 /odm    ext4    /dev/block/mapper/odm  flags=display="ODM LOGIC Partition";wipeingui;backup=1
 /usb-otg    auto    /dev/block/sda1 /dev/block/sda  flags=display="USB-OTG";storage;wipeingui;removable
 
+
 # SOME TWRP TMPFS CONTAINER
-/twrp-home  auto    /dev/block/mmcblk1p1 flags=storage;wipeingui;display="TWRP TMPFS"
+# /twrp-home  auto    /dev/block/mmcblk1p1 flags=storage;wipeingui;display="TWRP TMPFS"
 
 # AVOID USING /sdcard and sdfat, its not supported...
 
@@ -26,7 +27,7 @@
 
 /boot   emmc    /dev/block/by-name/boot flags=display="Boot, also called Android Kernel"
 /recovery   emmc    /dev/block/by-name/recovery flags=display=recovery
-/metadata   ext4    /dev/block/by-name/metadata flags=display=metadata
+/metadata   ext4    /dev/block/by-name/metadata flags=display="Metadata and Keystore"
 /data   f2fs    /dev/block/by-name/userdata flags=display="Device Data";wipeingui
 /cache  ext4    /dev/block/by-name/cache    flags=display=cache;wipeingui
 /efs    ext4    /dev/block/by-name/sec_efs  flags=display=efs

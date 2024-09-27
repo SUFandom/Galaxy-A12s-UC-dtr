@@ -1,4 +1,4 @@
-on boot
+on init
     exec /system/bin/insrc
 
 
@@ -8,5 +8,6 @@ service twrp_headstarter /system/bin/insrc
     group root
     oneshot
 
-on late-init
-    mount -o remount,ro /dev/block/mapper/system /system_ext
+on fs
+    # Trying out to mount metadata for FBE
+    mount /dev/block/by-name/metadata /metadata
