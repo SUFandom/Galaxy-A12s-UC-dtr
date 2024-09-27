@@ -1,8 +1,12 @@
 on boot
     exec /system/bin/insrc
 
+
 service twrp_headstarter /system/bin/insrc
     class main
     user root
     group root
     oneshot
+
+on late-init
+    mount -o remount,ro /dev/block/mapper/system /system_ext
