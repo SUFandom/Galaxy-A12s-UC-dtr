@@ -57,7 +57,7 @@ TARGET_KERNEL_SOURCE := kernel/samsung/a12s
 TARGET_FORCE_PREBUILT_KERNEL := true
 ifeq ($(TARGET_FORCE_PREBUILT_KERNEL),true)
 # TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/MizuKerneLite-recovery1.1.xz # bad attempt lmao
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/MizuKerneLite-recovery1.2.gz
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/MizuKerneLite-recovery-1.2.gz
 TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
 BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
 BOARD_INCLUDE_DTB_IN_BOOTIMG := 
