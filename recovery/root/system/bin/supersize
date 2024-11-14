@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/system/bin/sh
 
 # REPART for Recoveries like TWRP and OFox (and also PBRB)
 # The difference between the repartioner by Astrako, that is usually on the zipfile and the script binary ones
