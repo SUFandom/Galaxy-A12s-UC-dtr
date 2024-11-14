@@ -1,0 +1,202 @@
+#!/bin/sh
+
+# REPART for Recoveries like TWRP and OFox (and also PBRB)
+# The difference between the repartioner by Astrako, that is usually on the zipfile and the script binary ones
+# is that, you can freely size (some) partitions that you want
+
+# This source code (bash script) is STRICTLY GPLv3
+
+
+
+DISK="$( </system/var/block-target)"
+D_CD="$(sgdisk --print $DISK | grep super | awk '{printf $6}')"
+
+SUPERSIZER=""
+INPT=""
+
+
+function tell() {
+    echo "$1"
+}
+
+function wipe() {
+    clear
+}
+
+function ui_mm() {
+    tell ""
+    tell "====================================================="
+    tell "= SUPERSIZER by Mizumo-prjkt                        ="
+    tell "====================================================="
+    tell "= Target: mmcblk0                                   =" # Edit this to your respective devices
+    tell "====================================================="
+    tell "=                                                   ="
+    tell "=    1 - Resize super partition                     ="
+    tell "=    2 - About                                      ="
+    tell "=    0 - Exit                                       ="
+    tell "=                                                   ="
+    tell "====================================================="
+    tell "Debug:"
+    tell "DISK=$DISK"
+    tell " if this ^ did not invoke any response, means block target"
+    tell " at /system/var/block-target is missing"
+    tell ""
+    tell ""
+}
+
+function ui_rpmain() {
+    tell ""
+    tell "======================================================"
+    tell "= - Resize super Partition                           ="
+    tell "======================================================"
+    tell "=                                                    ="
+    tell "=    Do you wish to resize your super partition?     ="
+    tell "=    Any changes will be irrevirsible                ="
+    tell "=    ALSO: userdata will be formatted and resized    ="
+    tell "=          when formatting super partition           ="
+    tell "=          and also if you dare to enter an invalid  ="
+    tell "=          value, then kiss your phone goodbye       ="
+    tell "=                                                    ="
+    tell "======================================================"
+    tell "=     1 - YES                    2 - No              ="
+    tell "======================================================"
+    tell ""
+    tell ""
+}
+
+function ui_rp_mes () {
+    tell ""
+    tell ""
+    read -p "Super Partition size in MiB: " SUPERSIZER
+    read -p "Are you sure you want to resize the super to $SUPERSIZER??? (y/n): " YESNO
+    tell ""
+}
+
+
+function purge_partition() {
+    sgdisk --delete=$1 $DISK
+}
+
+function purge_umount() {
+    # Unmount partitions to avoid **ANY** issues with sgdisk
+    umount /system_root
+    umount /vendor
+    umount /product
+    umount /odm
+    umount /prism
+    umount /optics
+    umount /cache
+    umount /omr
+    umount /data
+}
+
+function ui_start_sizing() {
+    case $YESNO in
+        "y")
+            purge_umount
+            SPARTID=$(sgdisk --print "$DISK" | grep super | awk '{printf $1}')
+            UDATAPARTID=$(sgdisk --print "$DISK" | grep userdata | awk '{printf $1}' )
+            purge_partition $SPARTID
+            purge_partition $UDATAPARTID
+            sgdisk --new=0:0:+${SUPERSIZER}MiB --typecode=0:$D_CD --change-name=0:super $DISK
+            sgdisk --new=0:0:0 --typecode=0:$D_CD --change-name=0:userdata $DISK
+            tell "Done"
+            ;;
+        "Y")
+            purge_umount
+            SPARTID=$(sgdisk --print "$DISK" | grep super | awk '{printf $1}')
+            UDATAPARTID=$(sgdisk --print "$DISK" | grep userdata | awk '{printf $1}' )
+            purge_partition $SPARTID
+            purge_partition $UDATAPARTID
+            sgdisk --new=0:0:+${SUPERSIZER}MiB --typecode=0:$D_CD --change-name=0:super $DISK
+            sgdisk --new=0:0:0 --typecode=0:$D_CD --change-name=0:userdata $DISK
+            tell "Done"
+            sleep 3
+            ;;
+        "n")
+            tell "abort"
+            main
+            ;;
+        "N")
+            tell "abort"
+            main
+            ;;
+    esac
+
+}
+
+function rpexec() {
+    while true; do
+    wipe
+    ui_rpmain
+    read -p "Input: " INPT
+    case $INPT in
+        "1")
+            ui_rp_mes
+            break
+            ;;
+        "2")
+            main
+            break 
+            ;;
+        *)
+            tell "invalid: $INPT , RTFM"
+            ;;
+    esac
+    done
+}
+
+function ui_about() {
+    tell ""
+    tell "========================================================"
+    tell "= ABOUT SUPERSIZER                                     ="
+    tell "========================================================"
+    tell "=                                                      ="
+    tell "=  Supersizer is a super partition expander/shrinker   ="
+    tell "=  So you can put your own super images without        ="
+    tell "=  the worry of not having enough space                ="
+    tell "=                                                      ="
+    tell "=  Created by Mizu to handle issues of flashing super  ="
+    tell "=  Images on recoveries like TWRP                      ="
+    tell "=                                                      ="
+    tell "=  License is GPL-3.0                                  ="
+    tell "=                                                      ="
+    tell "========================================================"
+    tell "= press any key to leave                               ="
+    tell "========================================================"
+    tell ""
+}
+
+function about() {
+    wipe
+    ui_about
+    read -n 1
+    main
+}
+
+function main() {
+    while true; do
+        wipe
+        ui_mm
+        read -p "Input: " INPT
+        case $INPT in
+            1)
+                rpexec
+                break
+                ;;
+            2)
+                about
+                break
+                ;;
+            0)
+                exit
+                break 
+                ;;
+            *)
+                tell "invalid: $INPT, RTFM"
+                ;;
+        esac
+    done
+}
+
+main
