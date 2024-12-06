@@ -70,6 +70,7 @@ function ui_rp_mes () {
     read -p "Super Partition size in MiB: " SUPERSIZER
     read -p "Are you sure you want to resize the super to $SUPERSIZER??? (y/n): " YESNO
     tell ""
+    ui_start_sizing
 }
 
 
@@ -101,6 +102,8 @@ function ui_start_sizing() {
             sgdisk --new=0:0:+${SUPERSIZER}MiB --typecode=0:$D_CD --change-name=0:super $DISK
             sgdisk --new=0:0:0 --typecode=0:$D_CD --change-name=0:userdata $DISK
             tell "Done"
+            sleep 3
+            main
             ;;
         "Y")
             purge_umount
@@ -112,6 +115,7 @@ function ui_start_sizing() {
             sgdisk --new=0:0:0 --typecode=0:$D_CD --change-name=0:userdata $DISK
             tell "Done"
             sleep 3
+            main
             ;;
         "n")
             tell "abort"

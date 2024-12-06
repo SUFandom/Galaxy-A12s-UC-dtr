@@ -120,7 +120,7 @@ TW_NO_SCREEN_TIMEOUT := true
 TW_NO_REBOOT_BOOTLOADER := true
 TW_HAS_DOWNLOAD_MODE := true
 TARGET_USERIMAGES_USE_F2FS := true
-TW_DEVICE_VERSION := A12s_exp_@Mizumo_prjkt
+TW_DEVICE_VERSION := A12s-1u-MizProject
 TW_MTP_DEVICE := "Galaxy A12 TWRP"
 TARGET_SCREEN_WIDTH := 720
 TARGET_SCREEN_HEIGHT := 1500
@@ -162,7 +162,7 @@ TARGET_USES_LOGD := true
 # TW_BACKUP_EXCLUSIONS += \
 # 	/data/fonts \
 # 	/data/system/package_cache \
-# 	/data/dalvik=cache \
+# 	/data/dalvik-cache \
 # 	/data/cache \
 # 	/data/adb \
 # 	/data/media/0 \
@@ -172,7 +172,7 @@ TARGET_USES_LOGD := true
 
 ## Making the recovery.img smaller
 # BOARD_HAS_NO_REAL_SDCARD := true  # making this flag obsolete
-# RECOVERY_SDCARD_ON_DATA  := true
+# RECOVERY_SDCARD_ON_DATA  := true  # due to new plans
 
 # Compress (special help with physwizz)
 BOARD_RAMDISK_USE_LZMA := true
