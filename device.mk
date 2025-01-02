@@ -7,7 +7,7 @@
 
 LOCAL_PATH := device/samsung/a12s
 
-# PRODUCT_USE_DYNAMIC_PARTITIONS := true
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # PRODUCT_HOST_LIBRARIES := libandroidicu 
 
