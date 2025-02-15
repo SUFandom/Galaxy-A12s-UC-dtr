@@ -57,7 +57,8 @@ TARGET_KERNEL_SOURCE := kernel/samsung/a12s
 TARGET_FORCE_PREBUILT_KERNEL := true
 ifeq ($(TARGET_FORCE_PREBUILT_KERNEL),true)
 # TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/MizuKerneLite-recovery1.1.xz # bad attempt lmao
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/MizuKerneLite-recovery-1.2
+# TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/MizuKerneLite-recovery-1.2
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/MizKernel-Rappa-susfs
 TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
 BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
 BOARD_INCLUDE_DTB_IN_BOOTIMG := 
@@ -114,13 +115,13 @@ TW_SCREEN_BLANK_ON_BOOT := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_USE_TOOLBOX := true
 
-# TWRP Configuration by @SUFandom
+# TWRP Configuration by @Mizumo_prjkt
 TW_EXCLUDE_TWRPAPP := true
 TW_NO_SCREEN_TIMEOUT := true
 TW_NO_REBOOT_BOOTLOADER := true
 TW_HAS_DOWNLOAD_MODE := true
 TARGET_USERIMAGES_USE_F2FS := true
-TW_DEVICE_VERSION := A12s_exp_@Mizumo_prjkt
+TW_DEVICE_VERSION := A12s-1s-Agalea-@Mizumo_prjkt
 TW_MTP_DEVICE := "Galaxy A12 TWRP"
 TARGET_SCREEN_WIDTH := 720
 TARGET_SCREEN_HEIGHT := 1500
@@ -162,7 +163,7 @@ TARGET_USES_LOGD := true
 # TW_BACKUP_EXCLUSIONS += \
 # 	/data/fonts \
 # 	/data/system/package_cache \
-# 	/data/dalvik=cache \
+# 	/data/dalvik-cache \
 # 	/data/cache \
 # 	/data/adb \
 # 	/data/media/0 \
@@ -172,7 +173,7 @@ TARGET_USES_LOGD := true
 
 ## Making the recovery.img smaller
 # BOARD_HAS_NO_REAL_SDCARD := true  # making this flag obsolete
-# RECOVERY_SDCARD_ON_DATA  := true
+# RECOVERY_SDCARD_ON_DATA  := true  # due to new plans
 
 # Compress (special help with physwizz)
 BOARD_RAMDISK_USE_LZMA := true
